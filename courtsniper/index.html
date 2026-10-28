@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Court Sniper | Be on court the second bookings open</title>
+<meta name="description" content="Court Sniper is an Android app that books your Leixlip Tennis Club court the instant it is released, so you never lose a prime slot to a faster finger.">
+<link rel="canonical" href="https://everydayappshq.github.io/courtsniper/">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<meta property="og:title" content="Court Sniper">
+<meta property="og:description" content="Be on court the second bookings open.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://everydayappshq.github.io/courtsniper/">
+<meta name="theme-color" content="#0c0b0a">
+<style>
+:root{--bg:#0c0b0a;--panel:#181410;--gold:#d9b44a;--dim:#6e5b2b;--text:#f2e8cc;--muted:#a39270;--red:#d0182f}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif;line-height:1.6;overflow-x:hidden}
+a{color:var(--gold)}
+.bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 50% 25%,#2e2418,var(--bg) 70%)}
+.bg svg{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+nav .brand{display:flex;align-items:center;gap:10px;color:var(--gold);font-weight:900;letter-spacing:.25em;font-size:14px;text-decoration:none}
+nav a.back{color:var(--muted);font-size:13px;letter-spacing:.15em;text-decoration:none}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:36px 0 70px}
+.stamp{display:inline-block;border:2px solid var(--red);color:var(--red);font-weight:900;letter-spacing:.3em;font-size:13px;padding:4px 10px;transform:rotate(-4deg);margin-bottom:22px}
+h1{font-size:clamp(38px,6vw,68px);line-height:1.02;margin:0 0 18px;letter-spacing:.06em;color:var(--gold);text-transform:uppercase}
+.lead{font-size:19px;color:var(--text);max-width:34em;margin:0 0 28px}
+.btn{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:12px 22px;letter-spacing:.2em;font-weight:700;font-size:13px;text-decoration:none;text-transform:uppercase}
+.btn.solid{background:var(--gold);color:var(--bg)}
+.btn:hover{filter:brightness(1.15)}
+.phones{display:flex;justify-content:center;gap:18px}
+.phone{width:46%;max-width:240px;border:3px solid #3a3020;border-radius:26px;overflow:hidden;background:#000;box-shadow:0 20px 60px #000a}
+.phone img{display:block;width:100%;height:auto}
+.phone:nth-child(2){margin-top:46px}
+section{padding:54px 0;border-top:1px solid #2a2314}
+h2{font-size:14px;letter-spacing:.4em;color:var(--muted);text-transform:uppercase;margin:0 0 26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{border:1px solid var(--dim);background:var(--panel);padding:20px}
+.card h3{margin:0 0 8px;color:var(--gold);letter-spacing:.12em;font-size:15px;text-transform:uppercase}
+.card p{margin:0;font-size:15px;color:var(--text)}
+.steps{counter-reset:s;display:grid;gap:14px;padding:0;list-style:none}
+.steps li{counter-increment:s;border-left:3px solid var(--gold);padding:4px 0 4px 18px}
+.steps li::before{content:"0" counter(s);color:var(--red);font-weight:900;letter-spacing:.2em;margin-right:10px}
+.map{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.shots{display:flex;gap:18px;flex-wrap:wrap}
+.shots .phone{width:calc(33% - 12px);max-width:none;margin-top:0!important}
+.note{color:var(--muted);font-size:14px}
+footer{padding:40px 0 60px;color:var(--muted);font-size:13px;border-top:1px solid #2a2314}
+@media(max-width:800px){.hero,.map{grid-template-columns:1fr}.phones{order:-1}}
+@media(max-width:560px){.shots .phone{width:100%;max-width:300px;margin:0 auto}}
+@media(prefers-reduced-motion:no-preference){.pulse{animation:p 3s ease-out infinite}@keyframes p{0%{r:8;opacity:.8}100%{r:90;opacity:0}}}
+</style>
+</head>
+<body>
+<div class="bg" aria-hidden="true">
+<svg viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
+<g fill="none" stroke="#d9b44a" stroke-opacity=".18">
+<circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="120"/><circle cx="200" cy="200" r="180"/><circle cx="200" cy="200" r="240"/><circle cx="200" cy="200" r="300"/>
+<line x1="0" y1="200" x2="400" y2="200"/><line x1="200" y1="0" x2="200" y2="800"/>
+</g>
+<circle class="pulse" cx="200" cy="200" r="8" fill="none" stroke="#d0182f" stroke-width="2"/>
+</svg>
+</div>
+
+<div class="wrap">
+<nav>
+<a class="brand" href="./"><svg width="30" height="30" viewBox="0 0 108 108" aria-hidden="true"><use href="icon.svg#m"/></svg>COURT SNIPER</a>
+<a class="back" href="../">EVERYDAY APPS HQ &rarr;</a>
+</nav>
+
+<header class="hero">
+<div>
+<span class="stamp">TOP SECRET</span>
+<h1>Be on court the second it opens.</h1>
+<p class="lead">Your club releases courts to the second, exactly four days ahead, and the best evening slots are gone before most people have logged in. Court Sniper wakes your phone, waits for the release moment and locks on a court for you. No alarms, no refreshing, no fumbling with the website.</p>
+<a class="btn solid" href="#how">How it works</a>
+<a class="btn" href="#access">Get access</a>
+</div>
+<div class="phones">
+<div class="phone"><img src="missions-noir.png" alt="Court Sniper missions screen over a Cold War map of Europe" width="540" height="1560"></div>
+<div class="phone"><img src="intel-noir.png" alt="Court Sniper intel screen showing free courts by time" width="540" height="1560"></div>
+</div>
+</header>
+
+<section id="how">
+<h2>The operation</h2>
+<ol class="steps">
+<li><strong>Brief a mission.</strong> Pick the date, start time, length and the courts you will accept, in order of preference.</li>
+<li><strong>Stand down.</strong> The app schedules a wake-up shortly before the release moment, even if your phone is asleep.</li>
+<li><strong>Lock on.</strong> It starts trying 15 seconds early and keeps going, matching the server clock to the second, dropping any court someone else grabs and moving to your next choice.</li>
+<li><strong>Target acquired.</strong> You get a notification with the court and time. Cancel any booking from the Assets tab.</li>
+</ol>
+</section>
+
+<section>
+<h2>Field kit</h2>
+<div class="grid">
+<div class="card"><h3>Release-second timing</h3><p>Syncs to the booking server's clock so the first attempt lands at the exact release second, not a moment late.</p></div>
+<div class="card"><h3>Court fallbacks</h3><p>Rank your courts. If Court 1 is taken the instant it opens, it tries Court 2, then 3, without you lifting a finger.</p></div>
+<div class="card"><h3>Intel</h3><p>See which courts are free for every start time over the next few days. Slots already in the past are hidden.</p></div>
+<div class="card"><h3>Assets</h3><p>Your upcoming bookings in one place, with one-tap cancel when plans change.</p></div>
+<div class="card"><h3>Password manager</h3><p>Sign in with Google Password Manager, or save your details there. Credentials on the device are sealed in the Android Keystore.</p></div>
+<div class="card"><h3>Noir or Paper</h3><p>Black and gold spy-thriller styling, or a cream dossier with typewriter type. Your choice is remembered.</p></div>
+</div>
+</section>
+
+<section>
+<h2>Surveillance photos</h2>
+<div class="shots">
+<div class="phone"><img src="missions-noir.png" alt="Missions in the noir theme" loading="lazy" width="540" height="1560"></div>
+<div class="phone"><img src="intel-noir.png" alt="Intel tab in the noir theme" loading="lazy" width="540" height="1560"></div>
+<div class="phone"><img src="missions-paper.png" alt="Missions in the paper theme" loading="lazy" width="540" height="1560"></div>
+</div>
+</section>
+
+<section id="access">
+<h2>Access</h2>
+<p>Court Sniper is built for Leixlip Tennis Club members and is currently in private testing on Android. It signs in with your own club account, sends your details only to the club's booking provider, and never sees anyone else's.</p>
+<p class="note">Want to try it? Get in touch with Everyday Apps HQ via the <a href="../">home page</a>.</p>
+</section>
+
+<footer>
+Court Sniper is an independent app by Everyday Apps HQ. It is not affiliated with or endorsed by Leixlip Tennis Club or Skedda. Please book responsibly and follow your club's rules.
+</footer>
+</div>
+</body>
+</html>
