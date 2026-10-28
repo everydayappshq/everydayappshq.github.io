@@ -18,113 +18,380 @@
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,"Times New Roman",serif;line-height:1.6;overflow-x:hidden}
 a{color:var(--gold)}
-.bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(circle at 50% 25%,#2e2418,var(--bg) 70%)}
-.bg svg{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
-.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
-nav .brand{display:flex;align-items:center;gap:10px;color:var(--gold);font-weight:900;letter-spacing:.25em;font-size:14px;text-decoration:none}
+::selection{background:var(--gold);color:var(--bg)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.mono{font-family:"Courier New",ui-monospace,monospace}
+
+/* film grain */
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.09;mix-blend-mode:overlay;
+ background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+ animation:grain 1s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+
+/* intro */
+#intro{position:fixed;inset:0;z-index:100;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden}
+#intro svg{width:min(70vmin,520px);height:auto;animation:zoom 1.5s cubic-bezier(.2,.7,.2,1) both}
+@keyframes zoom{from{transform:scale(7);opacity:.2}to{transform:scale(1);opacity:1}}
+#intro .t{color:var(--gold);letter-spacing:.35em;font-weight:900;font-size:clamp(20px,4vw,34px);margin-top:26px;opacity:0;animation:fade .6s 1.3s forwards}
+#intro .s{color:var(--muted);letter-spacing:.4em;font-size:12px;opacity:0;animation:fade .6s 1.5s forwards}
+#intro .bars{position:absolute;inset:0;display:flex}
+#intro .bars i{flex:1;background:var(--red);transform:scaleY(0);transform-origin:top;animation:drop .45s forwards}
+#intro .bars i:nth-child(1){animation-delay:2.0s}#intro .bars i:nth-child(2){animation-delay:2.05s}#intro .bars i:nth-child(3){animation-delay:2.1s}#intro .bars i:nth-child(4){animation-delay:2.15s}#intro .bars i:nth-child(5){animation-delay:2.2s}#intro .bars i:nth-child(6){animation-delay:2.25s}#intro .bars i:nth-child(7){animation-delay:2.3s}
+@keyframes drop{to{transform:scaleY(1)}}
+@keyframes fade{to{opacity:1}}
+#intro.out{animation:out .7s forwards}
+@keyframes out{to{opacity:0;visibility:hidden}}
+
+/* nav */
+nav{position:absolute;top:0;left:0;right:0;z-index:5}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:18px;padding-bottom:18px}
+.brand{display:flex;align-items:center;gap:10px;color:var(--gold);font-weight:900;letter-spacing:.25em;font-size:14px;text-decoration:none}
 nav a.back{color:var(--muted);font-size:13px;letter-spacing:.15em;text-decoration:none}
-.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:36px 0 70px}
-.stamp{display:inline-block;border:2px solid var(--red);color:var(--red);font-weight:900;letter-spacing:.3em;font-size:13px;padding:4px 10px;transform:rotate(-4deg);margin-bottom:22px}
-h1{font-size:clamp(38px,6vw,68px);line-height:1.02;margin:0 0 18px;letter-spacing:.06em;color:var(--gold);text-transform:uppercase}
-.lead{font-size:19px;color:var(--text);max-width:34em;margin:0 0 28px}
-.btn{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:12px 22px;letter-spacing:.2em;font-weight:700;font-size:13px;text-decoration:none;text-transform:uppercase}
+
+/* hero */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;cursor:none}
+.hero canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#0c0b0af0 0%,#0c0b0acc 35%,transparent 70%),linear-gradient(0deg,var(--bg),transparent 25%)}
+.hero>.wrap{width:100%;position:relative;z-index:2}.hero .copy{position:relative;z-index:2;padding:110px 0 90px;max-width:560px}
+.stamp{display:inline-block;border:3px solid var(--red);color:var(--red);font-weight:900;letter-spacing:.3em;font-size:14px;padding:4px 12px;transform:rotate(-5deg);margin-bottom:22px;opacity:0}
+.go .stamp{animation:slam .5s .1s cubic-bezier(.2,1.6,.4,1) forwards}
+@keyframes slam{from{transform:rotate(-5deg) scale(3.2);opacity:0}to{transform:rotate(-5deg) scale(1);opacity:1}}
+h1{font-size:clamp(40px,7vw,78px);line-height:1;margin:0 0 18px;letter-spacing:.05em;color:var(--gold);text-transform:uppercase;text-shadow:0 0 40px #d9b44a33}
+h1 em{font-style:normal;color:var(--text)}
+.sub{font-size:18px;min-height:3.4em;margin:0 0 26px}
+.sub::after{content:"\2588";color:var(--gold);margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.btn{display:inline-block;border:1px solid var(--gold);color:var(--gold);padding:13px 24px;letter-spacing:.2em;font-weight:700;font-size:13px;text-decoration:none;text-transform:uppercase;margin:0 10px 10px 0;transition:.2s}
 .btn.solid{background:var(--gold);color:var(--bg)}
-.btn:hover{filter:brightness(1.15)}
-.phones{display:flex;justify-content:center;gap:18px}
-.phone{width:46%;max-width:240px;border:3px solid #3a3020;border-radius:26px;overflow:hidden;background:#000;box-shadow:0 20px 60px #000a}
+.btn:hover{box-shadow:0 0 28px #d9b44a66;transform:translateY(-2px)}
+#reticle{position:fixed;left:0;top:0;width:90px;height:90px;margin:-45px 0 0 -45px;pointer-events:none;z-index:40;opacity:0;transition:opacity .2s}
+#reticle.on{opacity:1}
+#reticle.lock svg{transform:scale(.6) rotate(45deg)}
+#reticle svg{width:100%;height:100%;transition:transform .25s}
+.scrollhint{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);z-index:3;color:var(--muted);letter-spacing:.4em;font-size:11px;animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translate(-50%,6px)}}
+
+/* ticker */
+.ticker{border-block:1px solid var(--dim);background:#120f0b;overflow:hidden;white-space:nowrap;padding:10px 0;font-size:13px;letter-spacing:.2em;color:var(--muted)}
+.ticker div{display:inline-block;padding-left:100%;animation:tick 40s linear infinite}
+.ticker b{color:var(--gold)}.ticker u{color:var(--red);text-decoration:none}
+@keyframes tick{to{transform:translateX(-100%)}}
+
+section{padding:76px 0;position:relative}
+h2{font-size:13px;letter-spacing:.45em;color:var(--red);text-transform:uppercase;margin:0 0 10px}
+h3.big{font-size:clamp(26px,4vw,42px);margin:0 0 30px;color:var(--gold);letter-spacing:.04em;line-height:1.1}
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:none}
+
+/* release clock */
+.clock{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+.digits{font-size:clamp(46px,9vw,92px);color:var(--text);letter-spacing:.06em;text-shadow:0 0 24px #d9b44a55;line-height:1}
+.digits span{color:var(--red)}
+.cap{color:var(--muted);letter-spacing:.3em;font-size:12px;margin-top:10px}
+
+/* terminal */
+.term{border:1px solid var(--dim);background:#080706;box-shadow:0 0 60px #d9b44a14,inset 0 0 40px #000;position:relative}
+.term .bar{display:flex;align-items:center;gap:8px;padding:8px 12px;border-bottom:1px solid var(--dim);color:var(--muted);font-size:12px;letter-spacing:.2em}
+.term .bar i{width:9px;height:9px;border-radius:50%;background:var(--dim)}
+.term pre{margin:0;padding:16px;min-height:330px;font-size:13px;line-height:1.7;color:#cfe8c4;white-space:pre-wrap;overflow:hidden}
+.term pre .g{color:var(--gold)}.term pre .r{color:#ff5468}.term pre .d{color:#7a7058}.term pre .w{color:#fff}
+.term::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,#0000 0 2px,#0003 2px 3px)}
+.run{margin-top:16px;cursor:pointer;background:none;font-family:inherit}
+.run.solid{background:var(--gold)}
+.run:disabled{opacity:.5;cursor:wait}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;border:1px solid var(--dim);background:var(--panel);padding:22px;position:relative;overflow:hidden}
+.steps li::before{content:"0" counter(s);position:absolute;right:10px;top:-6px;font-size:76px;font-weight:900;color:#d9b44a14}
+.steps strong{color:var(--gold);letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:6px}
+
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.card{border:1px solid var(--dim);background:linear-gradient(160deg,#1d1810,#120f0b);padding:22px;position:relative}
+.card:hover{border-color:var(--gold);box-shadow:0 0 34px #d9b44a22}
+.card .no{position:absolute;right:14px;top:10px;font-size:11px;letter-spacing:.2em;color:var(--dim)}
+.card h4{margin:0 0 8px;color:var(--gold);letter-spacing:.12em;font-size:15px;text-transform:uppercase}
+.card p{margin:0;font-size:15px}
+
+/* redacted dossier */
+.dossier{border:1px solid var(--dim);background:#efe3c3;color:#2a2118;padding:30px;position:relative;box-shadow:0 30px 70px #000a}
+.dossier::before{content:"CONFIDENTIAL";position:absolute;right:20px;top:14px;border:3px solid #b00020;color:#b00020;padding:2px 10px;font-weight:900;letter-spacing:.2em;transform:rotate(6deg);opacity:.75}
+.dossier h5{margin:0 0 14px;font-size:20px;letter-spacing:.1em;padding-top:30px}
+.dossier p{margin:8px 0;font-size:16px}
+.rd{background:#111;color:#111;padding:0 6px;cursor:pointer;transition:.4s;user-select:none}
+.rd.open{background:#e1d3a8;color:#7a1020;font-weight:700}
+.hint{font-size:12px;color:#7a6a4c;letter-spacing:.2em;margin-top:14px}
+
+/* phones */
+.shots{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;perspective:1200px}
+.phone{width:min(260px,80vw);border:3px solid #3a3020;border-radius:28px;overflow:hidden;background:#000;box-shadow:0 30px 70px #000c}
 .phone img{display:block;width:100%;height:auto}
-.phone:nth-child(2){margin-top:46px}
-section{padding:54px 0;border-top:1px solid #2a2314}
-h2{font-size:14px;letter-spacing:.4em;color:var(--muted);text-transform:uppercase;margin:0 0 26px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
-.card{border:1px solid var(--dim);background:var(--panel);padding:20px}
-.card h3{margin:0 0 8px;color:var(--gold);letter-spacing:.12em;font-size:15px;text-transform:uppercase}
-.card p{margin:0;font-size:15px;color:var(--text)}
-.steps{counter-reset:s;display:grid;gap:14px;padding:0;list-style:none}
-.steps li{counter-increment:s;border-left:3px solid var(--gold);padding:4px 0 4px 18px}
-.steps li::before{content:"0" counter(s);color:var(--red);font-weight:900;letter-spacing:.2em;margin-right:10px}
-.map{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
-.shots{display:flex;gap:18px;flex-wrap:wrap}
-.shots .phone{width:calc(33% - 12px);max-width:none;margin-top:0!important}
+.phone:nth-child(2){margin-top:44px}
+
 .note{color:var(--muted);font-size:14px}
-footer{padding:40px 0 60px;color:var(--muted);font-size:13px;border-top:1px solid #2a2314}
-@media(max-width:800px){.hero,.map{grid-template-columns:1fr}.phones{order:-1}}
-@media(max-width:560px){.shots .phone{width:100%;max-width:300px;margin:0 auto}}
-@media(prefers-reduced-motion:no-preference){.pulse{animation:p 3s ease-out infinite}@keyframes p{0%{r:8;opacity:.8}100%{r:90;opacity:0}}}
+footer{padding:44px 0 70px;color:var(--muted);font-size:13px;border-top:1px solid #2a2314}
+@media(max-width:800px){.clock{grid-template-columns:1fr}.hero{cursor:auto}.hero::before{background:linear-gradient(0deg,#0c0b0af5 0%,#0c0b0a99 45%,#0c0b0acc 100%)}.hero .copy{padding-top:96px}.phone:nth-child(2){margin-top:0}#reticle{display:none}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}.reveal{opacity:1;transform:none}.ticker div{animation:none;padding-left:0}.stamp{opacity:1}}
 </style>
 </head>
 <body>
-<div class="bg" aria-hidden="true">
-<svg viewBox="0 0 400 800" preserveAspectRatio="xMidYMid slice">
-<g fill="none" stroke="#d9b44a" stroke-opacity=".18">
-<circle cx="200" cy="200" r="60"/><circle cx="200" cy="200" r="120"/><circle cx="200" cy="200" r="180"/><circle cx="200" cy="200" r="240"/><circle cx="200" cy="200" r="300"/>
-<line x1="0" y1="200" x2="400" y2="200"/><line x1="200" y1="0" x2="200" y2="800"/>
-</g>
-<circle class="pulse" cx="200" cy="200" r="8" fill="none" stroke="#d0182f" stroke-width="2"/>
-</svg>
+
+<div id="intro" role="presentation" aria-hidden="true">
+<svg viewBox="0 0 200 200"><g fill="none" stroke="#d9b44a" stroke-width="5"><circle cx="100" cy="100" r="54"/><circle cx="100" cy="100" r="82" stroke-opacity=".35" stroke-width="2"/><path d="M100 10V58M100 142V190M10 100H58M142 100H190" stroke-width="7"/></g><circle cx="100" cy="100" r="11" fill="#d0182f"/></svg>
+<div class="t">COURT SNIPER</div><div class="s">LEIXLIP TENNIS CLUB</div>
+<div class="bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 </div>
 
-<div class="wrap">
-<nav>
+<div id="reticle" aria-hidden="true"><svg viewBox="0 0 200 200"><g fill="none" stroke="#d9b44a" stroke-width="5"><circle cx="100" cy="100" r="54"/><path d="M100 10V58M100 142V190M10 100H58M142 100H190" stroke-width="6"/></g><circle cx="100" cy="100" r="9" fill="#d0182f"/></svg></div>
+
+<header class="hero" id="hero">
+<canvas id="map" aria-label="Animated Cold War map of Europe with Leixlip marked and a route to Berlin" role="img"></canvas>
+<nav><div class="wrap">
 <a class="brand" href="./"><svg width="30" height="30" viewBox="0 0 108 108" aria-hidden="true"><use href="icon.svg#m"/></svg>COURT SNIPER</a>
 <a class="back" href="../">EVERYDAY APPS HQ &rarr;</a>
-</nav>
-
-<header class="hero">
-<div>
+</div></nav>
+<div class="wrap"><div class="copy">
 <span class="stamp">TOP SECRET</span>
-<h1>Be on court the second it opens.</h1>
-<p class="lead">Your club releases courts to the second, exactly four days ahead, and the best evening slots are gone before most people have logged in. Court Sniper wakes your phone, waits for the release moment and locks on a court for you. No alarms, no refreshing, no fumbling with the website.</p>
-<a class="btn solid" href="#how">How it works</a>
-<a class="btn" href="#access">Get access</a>
-</div>
-<div class="phones">
-<div class="phone"><img src="missions-noir.png" alt="Court Sniper missions screen over a Cold War map of Europe" width="540" height="1560"></div>
-<div class="phone"><img src="intel-noir.png" alt="Court Sniper intel screen showing free courts by time" width="540" height="1560"></div>
-</div>
+<h1>Be on court <em>the second</em> it opens.</h1>
+<p class="sub mono" id="typed" aria-live="off"></p>
+<a class="btn solid" href="#sim">Run the simulation</a><a class="btn" href="#how">How it works</a>
+</div></div>
+<div class="scrollhint">SCROLL</div>
 </header>
 
+<div class="ticker mono" aria-hidden="true"><div>
+<b>19:00:00.000</b> RELEASE &bull; COURT 1 <u>TAKEN BY ANOTHER PLAYER</u> &bull; COURT 2 <b>TARGET ACQUIRED</b> &bull; 4 DAYS AHEAD, TO THE SECOND &bull; <u>THE OTHER LOT USE THE WEBSITE</u> &bull; ARMED, WAITING &bull; MISSION OP SILENT FALCON &bull; <b>BOOKED</b> &bull; NO ALARM CLOCK REQUIRED &bull; 15 SECONDS EARLY, THEN KEEP TRYING &bull;
+<b>19:00:00.000</b> RELEASE &bull; COURT 1 <u>TAKEN BY ANOTHER PLAYER</u> &bull; COURT 2 <b>TARGET ACQUIRED</b> &bull; 4 DAYS AHEAD, TO THE SECOND &bull; <u>THE OTHER LOT USE THE WEBSITE</u> &bull; ARMED, WAITING &bull; MISSION OP SILENT FALCON &bull; <b>BOOKED</b> &bull; NO ALARM CLOCK REQUIRED &bull; 15 SECONDS EARLY, THEN KEEP TRYING &bull;
+</div></div>
+
+<div class="wrap">
+
+<section id="sim">
+<h2 class="reveal">Live feed</h2>
+<h3 class="big reveal">The clock is ticking.</h3>
+<div class="clock">
+<div class="reveal">
+<div class="digits mono" id="digits">00<span>:</span>00<span>:</span>00</div>
+<div class="cap mono">UNTIL THE NEXT 19:00 RELEASE (IRELAND TIME)</div>
+<p style="margin-top:22px">Every evening slot opens exactly four days ahead, to the second. When that clock hits zero, every member races for the same courts. Court Sniper is already there.</p>
+<button class="btn solid run" id="run">&#9654; Run mission simulation</button>
+</div>
+<div class="term reveal">
+<div class="bar mono"><i></i><i></i><i></i>&nbsp;OP SILENT FALCON // SIMULATION</div>
+<pre class="mono" id="log" aria-live="polite"><span class="d">Press run to watch a mission play out.</span></pre>
+</div>
+</div>
+</section>
+
 <section id="how">
-<h2>The operation</h2>
+<h2 class="reveal">The operation</h2>
+<h3 class="big reveal">Four steps. Zero stress.</h3>
 <ol class="steps">
-<li><strong>Brief a mission.</strong> Pick the date, start time, length and the courts you will accept, in order of preference.</li>
-<li><strong>Stand down.</strong> The app schedules a wake-up shortly before the release moment, even if your phone is asleep.</li>
-<li><strong>Lock on.</strong> It starts trying 15 seconds early and keeps going, matching the server clock to the second, dropping any court someone else grabs and moving to your next choice.</li>
-<li><strong>Target acquired.</strong> You get a notification with the court and time. Cancel any booking from the Assets tab.</li>
+<li class="reveal"><strong>Brief</strong>Pick the date, start time, length and the courts you will accept, in order of preference.</li>
+<li class="reveal"><strong>Stand down</strong>The app schedules a wake-up shortly before release, even if your phone is asleep in your pocket.</li>
+<li class="reveal"><strong>Lock on</strong>It starts 15 seconds early, syncs to the server clock, keeps firing, and drops any court someone else grabs.</li>
+<li class="reveal"><strong>Acquired</strong>A notification tells you the court and time. Cancel from the Assets tab if plans change.</li>
 </ol>
 </section>
 
 <section>
-<h2>Field kit</h2>
+<h2 class="reveal">Field kit</h2>
+<h3 class="big reveal">Everything an agent needs.</h3>
 <div class="grid">
-<div class="card"><h3>Release-second timing</h3><p>Syncs to the booking server's clock so the first attempt lands at the exact release second, not a moment late.</p></div>
-<div class="card"><h3>Court fallbacks</h3><p>Rank your courts. If Court 1 is taken the instant it opens, it tries Court 2, then 3, without you lifting a finger.</p></div>
-<div class="card"><h3>Intel</h3><p>See which courts are free for every start time over the next few days. Slots already in the past are hidden.</p></div>
-<div class="card"><h3>Assets</h3><p>Your upcoming bookings in one place, with one-tap cancel when plans change.</p></div>
-<div class="card"><h3>Password manager</h3><p>Sign in with Google Password Manager, or save your details there. Credentials on the device are sealed in the Android Keystore.</p></div>
-<div class="card"><h3>Noir or Paper</h3><p>Black and gold spy-thriller styling, or a cream dossier with typewriter type. Your choice is remembered.</p></div>
+<div class="card reveal"><span class="no mono">ITEM 01</span><h4>Release-second timing</h4><p>Matches the booking server's clock so the first shot lands on the exact release second, not a moment late.</p></div>
+<div class="card reveal"><span class="no mono">ITEM 02</span><h4>Court fallbacks</h4><p>Rank your courts. If Court 1 is gone the instant it opens, it tries Court 2, then 3, without you lifting a finger.</p></div>
+<div class="card reveal"><span class="no mono">ITEM 03</span><h4>Intel</h4><p>See which courts are free at every start time over the coming days. Slots already in the past are hidden.</p></div>
+<div class="card reveal"><span class="no mono">ITEM 04</span><h4>Assets</h4><p>Your upcoming bookings in one place, with one-tap cancel.</p></div>
+<div class="card reveal"><span class="no mono">ITEM 05</span><h4>Password manager</h4><p>Sign in with Google Password Manager or save your details there. On-device credentials are sealed in the Android Keystore.</p></div>
+<div class="card reveal"><span class="no mono">ITEM 06</span><h4>Noir or Paper</h4><p>Black and gold spy-thriller styling, or a cream dossier in typewriter type. It remembers your choice.</p></div>
 </div>
 </section>
 
 <section>
-<h2>Surveillance photos</h2>
+<h2 class="reveal">Case file</h2>
+<h3 class="big reveal">Tap to declassify.</h3>
+<div class="dossier mono reveal">
+<h5>OPERATION: SILENT FALCON</h5>
+<p><b>AGENT:</b> <span class="rd">Carey W.</span></p>
+<p><b>TARGET:</b> <span class="rd">Court 1, Saturday 19:00</span>, released at <span class="rd">exactly 19:00:00 four days prior</span></p>
+<p><b>OPPOSITION:</b> <span class="rd">a dozen members mashing refresh on the website</span></p>
+<p><b>METHOD:</b> <span class="rd">start at T-15s, keep trying, fall back to Court 2</span></p>
+<p><b>OUTCOME:</b> <span class="rd">booked in under a second</span></p>
+<div class="hint">CLICK THE BLACK BARS</div>
+</div>
+</section>
+
+<section>
+<h2 class="reveal">Surveillance photos</h2>
+<h3 class="big reveal">Straight from the field.</h3>
 <div class="shots">
-<div class="phone"><img src="missions-noir.png" alt="Missions in the noir theme" loading="lazy" width="540" height="1560"></div>
-<div class="phone"><img src="intel-noir.png" alt="Intel tab in the noir theme" loading="lazy" width="540" height="1560"></div>
-<div class="phone"><img src="missions-paper.png" alt="Missions in the paper theme" loading="lazy" width="540" height="1560"></div>
+<div class="phone reveal" data-tilt><img src="missions-noir.png" alt="Court Sniper missions screen over a Cold War map of Europe" loading="lazy" width="540" height="1560"></div>
+<div class="phone reveal" data-tilt><img src="intel-noir.png" alt="Intel tab showing free courts by start time" loading="lazy" width="540" height="1560"></div>
+<div class="phone reveal" data-tilt><img src="missions-paper.png" alt="Missions screen in the cream paper theme" loading="lazy" width="540" height="1560"></div>
 </div>
 </section>
 
 <section id="access">
-<h2>Access</h2>
-<p>Court Sniper is built for Leixlip Tennis Club members and is currently in private testing on Android. It signs in with your own club account, sends your details only to the club's booking provider, and never sees anyone else's.</p>
-<p class="note">Want to try it? Get in touch with Everyday Apps HQ via the <a href="../">home page</a>.</p>
+<h2 class="reveal">Access</h2>
+<h3 class="big reveal">By invitation only.</h3>
+<p class="reveal">Court Sniper is built for Leixlip Tennis Club members and is in private testing on Android. It signs in with your own club account, sends your details only to the club's booking provider, and never sees anyone else's.</p>
+<p class="note reveal">Want to try it? Make contact via <a href="../">Everyday Apps HQ</a>.</p>
 </section>
 
 <footer>
 Court Sniper is an independent app by Everyday Apps HQ. It is not affiliated with or endorsed by Leixlip Tennis Club or Skedda. Please book responsibly and follow your club's rules.
 </footer>
 </div>
+
+<script>
+(() => {
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = s => document.querySelector(s);
+
+/* intro */
+const intro = $('#intro');
+const start = () => { $('#hero').classList.add('go'); type(); };
+const endIntro = () => { if (intro.classList.contains('out')) return; intro.classList.add('out'); try { sessionStorage.cs = 1; } catch (e) {} setTimeout(() => intro.remove(), 800); start(); };
+let seen = false; try { seen = !!sessionStorage.cs; } catch (e) {}
+if (reduce || seen) { intro.remove(); start(); }
+else { intro.addEventListener('click', endIntro); setTimeout(endIntro, 2900); }
+
+/* typewriter */
+function type() {
+  const el = $('#typed'); if (!el || el.dataset.d) return; el.dataset.d = 1;
+  const text = "Your club releases courts to the second. Court Sniper wakes your phone, waits for zero and locks on before anyone else has logged in.";
+  if (reduce) { el.textContent = text; return; }
+  let i = 0; (function t() { el.textContent = text.slice(0, ++i); if (i < text.length) setTimeout(t, 22); })();
+}
+
+/* scroll reveal */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .15 });
+document.querySelectorAll('.reveal').forEach((e, i) => { e.style.transitionDelay = (i % 4) * 90 + 'ms'; io.observe(e); });
+
+/* redacted text */
+document.querySelectorAll('.rd').forEach(e => e.addEventListener('click', () => e.classList.toggle('open')));
+
+/* tilt on phones */
+if (!reduce && matchMedia('(pointer:fine)').matches) {
+  document.querySelectorAll('[data-tilt]').forEach(el => {
+    el.addEventListener('mousemove', ev => {
+      const r = el.getBoundingClientRect(), x = (ev.clientX - r.left) / r.width - .5, y = (ev.clientY - r.top) / r.height - .5;
+      el.style.transition = 'transform .1s'; el.style.transform = `rotateY(${x * 18}deg) rotateX(${-y * 14}deg) scale(1.03)`;
+    });
+    el.addEventListener('mouseleave', () => { el.style.transition = 'transform .5s'; el.style.transform = ''; });
+  });
+}
+
+/* reticle follows the pointer over the hero */
+const ret = $('#reticle'), hero = $('#hero');
+let mx = 0, my = 0;
+hero.addEventListener('mousemove', e => {
+  mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5;
+  if (matchMedia('(pointer:fine)').matches) { ret.style.transform = `translate(${e.clientX}px,${e.clientY}px)`; ret.classList.add('on'); }
+});
+hero.addEventListener('mouseleave', () => ret.classList.remove('on'));
+hero.addEventListener('mousedown', () => ret.classList.add('lock'));
+addEventListener('mouseup', () => ret.classList.remove('lock'));
+
+/* real countdown to the next 19:00 Dublin release */
+const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Dublin', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' });
+function tick() {
+  const p = Object.fromEntries(fmt.formatToParts(new Date()).map(x => [x.type, x.value]));
+  let d = 19 * 3600 - ((+p.hour % 24) * 3600 + +p.minute * 60 + +p.second);
+  if (d <= 0) d += 86400;
+  const z = n => String(n).padStart(2, '0');
+  $('#digits').innerHTML = `${z(Math.floor(d / 3600))}<span>:</span>${z(Math.floor(d % 3600 / 60))}<span>:</span>${z(d % 60)}`;
+}
+tick(); setInterval(tick, 1000);
+
+/* mission simulation */
+const log = $('#log'), run = $('#run');
+const sleep = ms => new Promise(r => setTimeout(r, reduce ? 0 : ms));
+const add = async (html, ms = 600) => { log.innerHTML += html + '\n'; log.scrollTop = log.scrollHeight; await sleep(ms); };
+run.addEventListener('click', async () => {
+  run.disabled = true; log.innerHTML = '';
+  await add('<span class="g">&gt; ARMING OP SILENT FALCON</span>');
+  await add('  target   Sat 19:00, 60 min');
+  await add('  assets   C1 &gt; C2 &gt; C3');
+  await add('  clock    server offset <span class="w">+112 ms</span> corrected', 900);
+  await add('<span class="g">&gt; T-15s  ENGAGING</span>', 900);
+  for (const t of ['T-12.0s', 'T-8.0s', 'T-3.0s', 'T-0.4s'])
+    await add(`  ${t}  <span class="d">try C1 ... not open yet, retrying</span>`, 520);
+  await add('<span class="w">&gt; 19:00:00.000  RELEASE</span>', 700);
+  await add('  C1  <span class="r">409 CONFLICT, taken by another player</span>', 650);
+  await add('  <span class="d">dropping C1, falling back to C2</span>', 550);
+  await add('  C2  <span class="g">200 BOOKED</span>', 700);
+  await add('\n<span class="g">&#9608; TARGET ACQUIRED</span>  Court 2, Sat 19:00 to 20:00');
+  await add('<span class="d">  notification sent. total time: 0.38 s</span>', 0);
+  run.disabled = false; run.innerHTML = '&#8635; Run it again';
+});
+
+/* cold war map */
+const cv = $('#map'), cx = cv.getContext('2d');
+const P = a => { const o = []; for (let i = 0; i < a.length; i += 2) o.push([a[i], a[i + 1]]); return o; };
+const IRELAND = P([-10,51.7,-9.5,53.3,-10.2,54.2,-8.5,55.2,-6.2,55.2,-5.7,54.5,-6,53.5,-6.2,52.2,-7.3,52,-8.5,51.6]);
+const BRITAIN = P([-5.7,50,-3.5,50.3,1.4,51.1,1.7,52.7,0,53.5,-1.5,55,-2,56,-2,57.6,-3.5,58.6,-5,58.6,-6.2,57.5,-5.5,56,-4.8,55,-3.2,54.8,-3,53.5,-4.5,53.3,-4.2,52.2,-5.2,51.8,-3,51.4,-4.2,51]);
+const MAINLAND = P([-9,43,-8.8,41.8,-9.5,38.7,-8.8,37,-6.3,36.7,-5.4,36.1,-2,36.7,-0.5,38.3,0.2,38.8,-0.3,39.5,0.9,41,3.2,41.9,3,43.3,4.5,43.4,6.5,43.1,8,43.8,9.5,44.3,10.5,43.2,12.3,41.8,15,40,16,38,16.6,38.9,17.1,40.4,18.5,40.1,16.2,41.9,14,42.5,12.4,44.2,12.3,45.3,13.7,45.6,13.6,44.6,15,44,17.5,42.8,19.4,41.9,19.4,40.4,21,38.4,22.5,36.5,23.5,38,24,40.2,26,40.8,26.2,41.7,28,41.9,28.5,43.6,28.6,45,30,46,32,46,32,59.9,30,59.9,28.5,59.5,24.8,59.5,23.5,58,21.5,57.5,21,56,19.8,54.5,18.5,54.6,16.5,54.2,14.2,53.9,12,54.2,10.8,54,10,54.5,9.9,55.8,10.6,57.7,8.2,57,8.1,55.5,8.7,54.9,8.9,53.9,7,53.4,5,53.2,4.6,52.4,3.5,51.4,1.7,50.9,1.5,50.1,-1.5,49.7,-1.8,48.7,-4.7,48.4,-3,47.5,-1.3,46,-1.5,44.5,-1.8,43.4,-4,43.4,-8,43.7]);
+const SCAND = P([5.5,58.9,5,61,6.5,62.5,9.5,63.8,12.5,66,14,67.8,20,69.5,30,70,32,66,32,60.5,30,60.4,25,60.2,22.5,60,21.5,61.5,21.5,63,24.5,64.5,25,65.6,22,65.8,20,63.7,17.2,62.2,17.5,60.7,18.8,59.6,16.8,57.8,16.2,56.2,14.3,55.5,12.8,56,11.8,58,11.2,59,10.5,59.4,9,58.4,7,58]);
+const SICILY = P([12.5,38,15.6,38.3,15.2,36.7,12.6,37.5]), SARD = P([8.2,41,9.7,41,9.5,39.2,8.4,39]);
+const CURTAIN = P([10.9,54,10.6,52.5,10.2,51.2,9.9,50.3,12,50.2,12.4,49.5,13.8,48.8,16.9,48.6,17.1,47.7,16.5,47,16.1,46.6,15,46.5,13.8,45.6]);
+const EAST = CURTAIN.concat(P([19.5,42,21,41,23,41.5,26,41.7,28,41.9,30,46,32,46,32,60,30,59.9,28.5,59.5,24.8,59.5,23.5,58,21.5,57.5,21,56,19.8,54.5,18.5,54.6,16.5,54.2,14.2,53.9,12,54.2]));
+const CITIES = [['LONDON',-.13,51.5],['PARIS',2.35,48.86],['BERLIN',13.4,52.5],['VIENNA',16.4,48.2],['WARSAW',21,52.2],['PRAGUE',14.4,50.1],['BUDAPEST',19,47.5],['ROME',12.5,41.9],['MADRID',-3.7,40.4]];
+const LX = -6.49, LY = 53.37;
+let W, H, mapW, lx, ly, k;
+function size() {
+  const dpr = Math.min(devicePixelRatio || 1, 2); W = cv.clientWidth; H = cv.clientHeight;
+  cv.width = W * dpr; cv.height = H * dpr; cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const wide = W > 800;
+  mapW = wide ? W * .78 : 900; k = mapW / 25.9;
+  lx = wide ? W * .64 : W * .3; ly = wide ? H * .5 : H * .66;
+}
+const X = lon => lx + (lon - LX) / 42 * mapW, Y = lat => ly + (LY - lat) * k;
+const pathOf = pts => { cx.beginPath(); pts.forEach(([a, b], i) => i ? cx.lineTo(X(a), Y(b)) : cx.moveTo(X(a), Y(b))); };
+const t0 = performance.now();
+function frame(now) {
+  const t = (now - t0) / 1000;
+  cx.clearRect(0, 0, W, H);
+  const g = cx.createRadialGradient(lx, ly, 0, lx, ly, Math.max(W, H) * .75);
+  g.addColorStop(0, '#2e2418'); g.addColorStop(1, '#0c0b0a'); cx.fillStyle = g; cx.fillRect(0, 0, W, H);
+  cx.save(); cx.translate(mx * -14, my * -10);
+  cx.strokeStyle = 'rgba(217,180,74,.07)'; cx.lineWidth = 1;
+  for (let lo = -10; lo <= 30; lo += 5) { cx.beginPath(); cx.moveTo(X(lo), -50); cx.lineTo(X(lo), H + 50); cx.stroke(); }
+  for (let la = 35; la <= 70; la += 5) { cx.beginPath(); cx.moveTo(-50, Y(la)); cx.lineTo(W + 50, Y(la)); cx.stroke(); }
+  pathOf(EAST); cx.closePath(); cx.fillStyle = 'rgba(208,24,47,.13)'; cx.fill();
+  for (const poly of [IRELAND, BRITAIN, MAINLAND, SCAND, SICILY, SARD]) {
+    pathOf(poly); cx.closePath(); cx.fillStyle = 'rgba(217,180,74,.08)'; cx.fill();
+    cx.strokeStyle = 'rgba(217,180,74,.4)'; cx.lineWidth = 1.5; cx.stroke();
+  }
+  pathOf(CURTAIN); cx.strokeStyle = 'rgba(208,24,47,.9)'; cx.lineWidth = 3.5; cx.setLineDash([16, 9]); cx.lineDashOffset = -t * 14; cx.stroke(); cx.setLineDash([]);
+  cx.font = '11px Georgia';
+  for (const [n, lo, la] of CITIES) {
+    cx.fillStyle = 'rgba(217,180,74,.75)'; cx.beginPath(); cx.arc(X(lo), Y(la), 3, 0, 7); cx.fill();
+    cx.fillStyle = 'rgba(217,180,74,.6)'; cx.fillText(n, X(lo) + 8, Y(la) - 6);
+  }
+  cx.font = 'bold 11px Georgia'; cx.fillStyle = 'rgba(208,24,47,.9)'; cx.fillText('THE CURTAIN', X(10.7) + 8, Y(51.2));
+  const bx = X(13.4), by = Y(52.5), cxp = (lx + bx) / 2, cyp = Math.min(ly, by) - k * 1.4;
+  cx.beginPath(); cx.moveTo(lx, ly); cx.quadraticCurveTo(cxp, cyp, bx, by);
+  cx.strokeStyle = 'rgba(217,180,74,.55)'; cx.lineWidth = 2; cx.setLineDash([8, 8]); cx.lineDashOffset = -t * 20; cx.stroke(); cx.setLineDash([]);
+  const u = (t % 5) / 5, v = 1 - u;
+  const px = v * v * lx + 2 * v * u * cxp + u * u * bx, py = v * v * ly + 2 * v * u * cyp + u * u * by;
+  cx.fillStyle = 'rgba(208,24,47,.3)'; cx.beginPath(); cx.arc(px, py, 12, 0, 7); cx.fill();
+  cx.fillStyle = '#d0182f'; cx.beginPath(); cx.arc(px, py, 5, 0, 7); cx.fill();
+  for (const o of [0, .5]) {
+    const ph = (t / 3 + o) % 1; cx.strokeStyle = `rgba(208,24,47,${(1 - ph) * .6})`; cx.lineWidth = 2;
+    cx.beginPath(); cx.arc(lx, ly, 12 + ph * 110, 0, 7); cx.stroke();
+  }
+  cx.strokeStyle = '#d9b44a'; cx.lineWidth = 2.5; cx.beginPath(); cx.arc(lx, ly, 20, 0, 7); cx.stroke();
+  cx.beginPath(); for (const [a, b] of [[0,-1],[0,1],[-1,0],[1,0]]) { cx.moveTo(lx + a * 12, ly + b * 12); cx.lineTo(lx + a * 34, ly + b * 34); } cx.stroke();
+  cx.fillStyle = '#d0182f'; cx.beginPath(); cx.arc(lx, ly, 3.5, 0, 7); cx.fill();
+  cx.font = 'bold 12px Georgia'; cx.fillStyle = '#d9b44a'; cx.fillText("LEIXLIP  53\u00b021'N 06\u00b029'W", lx - 70, ly - 46);
+  cx.restore();
+  if (!reduce) requestAnimationFrame(frame);
+}
+addEventListener('resize', () => { size(); if (reduce) frame(performance.now()); });
+size(); requestAnimationFrame(frame);
+})();
+</script>
 </body>
 </html>
