@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-motion="off">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#111311">
+  <title>Everyday Apps HQ — Small apps. Bigger possibilities.</title>
+  <meta name="description" content="Thoughtfully made apps for the things you love doing. Explore Rallium, Tennis Track and Oghma: independent software for your court, your screen and your everyday.">
+  <link rel="canonical" href="https://everydayappshq.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://everydayappshq.github.io/">
+  <meta property="og:title" content="Everyday Apps HQ — Small apps. Bigger possibilities.">
+  <meta property="og:description" content="For your next point. Your next idea. Your everyday. Meet a growing collection of thoughtfully made apps.">
+  <meta property="og:image" content="https://everydayappshq.github.io/assets/social-card.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script>
+    (() => {
+      let saved;
+      try { saved = localStorage.getItem('everyday-theme'); } catch {}
+      const theme = saved === 'light' || saved === 'dark' ? saved : (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      document.documentElement.dataset.theme = theme;
+      document.querySelector('meta[name="theme-color"]').content = theme === 'light' ? '#f5f4ed' : '#111311';
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <svg class="symbol-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+      <symbol id="i-diagonal" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 80 80"><path d="m40 0 7.5 24.5L68 12 55.5 32.5 80 40l-24.5 7.5L68 68 47.5 55.5 40 80l-7.5-24.5L12 68l12.5-20.5L0 40l24.5-7.5L12 12l20.5 12.5Z" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+      <symbol id="i-windows" viewBox="0 0 24 24"><path d="M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 0h8v8h-8z" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="i-watch" viewBox="0 0 24 24"><rect x="5" y="6" width="14" height="12" rx="4"/><path d="m8 6 1-4h6l1 4M8 18l1 4h6l1-4m-4-9v3l2 1"/></symbol>
+      <symbol id="i-focus" viewBox="0 0 24 24"><path d="M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="m12 21-8-8C-2 7 6-1 12 6c6-7 14 1 8 7Z"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Everyday Apps HQ home">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span>everyday<span class="brand-second">apps<span class="hq">HQ</span></span></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#apps">The apps <span class="nav-count">03</span></a>
+      <a href="#approach">The thinking</a>
+      <a class="nav-cta" href="#whats-next" aria-label="What’s next"><span class="nav-label">What’s next</span> <svg class="icon"><use href="#i-diagonal"/></svg></a>
+      <button class="theme-toggle" type="button" aria-label="Switch to light theme" hidden><svg class="icon theme-sun" aria-hidden="true"><use href="#i-sun"/></svg><svg class="icon theme-moon" aria-hidden="true"><use href="#i-moon"/></svg></button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero container" id="top" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span> INDEPENDENT APPS. EVERYDAY POSSIBILITIES.</p>
+        <h1 id="hero-title">A little more<br>out of <span class="serif accent">every&nbsp;day.</span></h1>
+        <p class="hero-description">More time in the game. More room for ideas.<br class="desktop-break"> Thoughtfully made apps for the things you love doing.</p>
+        <a class="button button-lime" href="#apps">Find your next favourite <svg class="icon"><use href="#i-arrow"/></svg></a>
+        <div class="hero-footnote">
+          <div class="mini-icons" aria-hidden="true">
+            <img src="assets/rallium-mark.svg" width="32" height="32" alt="">
+            <img src="assets/tennistrack-icon.png" width="32" height="32" alt="">
+            <img src="assets/oghma-mark.svg" width="32" height="32" alt="">
+          </div>
+          <span>Three apps. A growing collection.</span>
+        </div>
+      </div>
+
+      <div class="playground" aria-label="Explore the apps">
+        <div class="orbital orbital-one" aria-hidden="true"></div>
+        <div class="orbital orbital-two" aria-hidden="true"></div>
+        <span class="stage-coordinate coordinate-top" aria-hidden="true">GOOD THINGS, IN THE MAKING.</span>
+        <svg class="stage-spark" aria-hidden="true"><use href="#i-spark"/></svg>
+        <span class="stage-plus" aria-hidden="true">+</span>
+
+        <div class="preview-panel preview-rallium" id="preview-rallium" role="tabpanel" aria-labelledby="tab-rallium" tabindex="0">
+          <div class="floating-note note-sport"><span class="status-dot"></span> LESS COUNTING. MORE PLAYING.</div>
+          <div class="watch-strap strap-top" aria-hidden="true"></div>
+          <div class="hero-watch" aria-label="Illustrative Rallium watch: you 30, Crea 15, games 4 to 3">
+            <div class="watch-topline"><span>rallium.</span><span>10:24</span></div>
+            <div class="watch-sport">TENNIS <span>●</span></div>
+            <div class="watch-players"><span>YOU</span><span>CREA</span></div>
+            <div class="watch-score"><span>30</span><span>15</span></div>
+            <div class="watch-divider"></div>
+            <div class="watch-bottom"><span>GAMES <b>4–3</b></span><span>SETS <b>1–0</b></span></div>
+          </div>
+          <div class="watch-strap strap-bottom" aria-hidden="true"></div>
+          <div class="floating-note note-match"><span class="tiny-arrow">↗</span><span>Your head.<br><strong>In the game.</strong></span></div>
+          <span class="preview-caption">RALLIUM / ILLUSTRATIVE PREVIEW</span>
+        </div>
+
+        <div class="preview-panel preview-tennis" id="preview-tennis" role="tabpanel" aria-labelledby="tab-tennis" tabindex="0" hidden>
+          <div class="floating-note note-sport"><span class="status-dot"></span> MEET YOUR NEXT PERSONAL BEST.</div>
+          <div class="hero-court" aria-label="Illustrative tennis serve landing inside the service box">
+            <svg viewBox="0 0 320 380" role="img" aria-label="Tennis court with an in serve and a curved ball trajectory">
+              <rect x="25" y="25" width="270" height="330" rx="2" fill="#163b32" stroke="#87b7a0" stroke-width="2"/>
+              <g fill="none" stroke="#87b7a0" stroke-width="2"><path d="M58 25v330M262 25v330M58 112h204M58 268h204M160 112v156"/><path d="M15 190h290" stroke="#e2eadc" stroke-dasharray="3 4"/></g>
+              <path class="serve-path" d="M205 337Q65 226 109 141" fill="none" stroke="#d3fa82" stroke-width="3" stroke-dasharray="7 7"/>
+              <circle cx="109" cy="141" r="19" fill="#d3fa82" opacity=".12"/><circle cx="109" cy="141" r="7" fill="#d3fa82"/>
+              <text x="127" y="146" fill="#d3fa82" font-size="12" font-family="sans-serif">IN</text>
+            </svg>
+            <div class="serve-readout"><span>THAT’S YOUR SERVE.</span><strong>148<small>km/h</small></strong><span class="serve-result">IN <span>↗ RIGHT ON TARGET</span></span></div>
+          </div>
+          <span class="preview-caption">TENNIS TRACK / SAMPLE DATA, NOT A MEASUREMENT</span>
+        </div>
+
+        <div class="preview-panel preview-oghma" id="preview-oghma" role="tabpanel" aria-labelledby="tab-oghma" tabindex="0" hidden>
+          <div class="floating-note note-sport"><span class="status-dot"></span> A LITTLE MORE ROOM FOR IDEAS.</div>
+          <div class="hero-desktop">
+            <div class="window-chrome"><span class="window-dots">● ● ●</span><span>Oghma / your next idea</span><svg class="icon"><use href="#i-plus"/></svg></div>
+            <img src="assets/oghma-workspace-annotate-dark.png" width="1920" height="1020" alt="The Oghma Windows editor with editable arrows, text and a screenshot on the canvas.">
+            <div class="desktop-caption"><span class="status-dot"></span> CAPTURE. COMPOSE. CREATE.</div>
+          </div>
+          <span class="preview-caption">OGHMA / ACTUAL APP, DEVELOPMENT PREVIEW</span>
+        </div>
+
+        <div class="preview-tabs" role="tablist" aria-label="Choose an app preview" hidden>
+          <button type="button" id="tab-rallium" role="tab" aria-selected="true" aria-controls="preview-rallium" tabindex="0"><img src="assets/rallium-mark.svg" width="24" height="24" alt="">Rallium</button>
+          <button type="button" id="tab-tennis" role="tab" aria-selected="false" aria-controls="preview-tennis" tabindex="-1"><img src="assets/tennistrack-icon.png" width="24" height="24" alt="">Tennis Track</button>
+          <button type="button" id="tab-oghma" role="tab" aria-selected="false" aria-controls="preview-oghma" tabindex="-1"><img src="assets/oghma-mark.svg" width="24" height="24" alt="">Oghma</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="manifesto-strip" role="img" aria-label="For your court. For your creativity. For your everyday.">
+      <div class="container strip-inner" aria-hidden="true">
+        <span>FOR YOUR COURT</span><svg><use href="#i-spark"/></svg>
+        <span>FOR YOUR CREATIVITY</span><svg><use href="#i-spark"/></svg>
+        <span>FOR YOUR EVERYDAY</span><svg><use href="#i-spark"/></svg>
+      </div>
+    </div>
+
+    <section class="collection container section-space" id="apps" aria-labelledby="collection-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">01 / THE COLLECTION</p><h2 id="collection-title">Different apps.<br>Same <span class="serif">thoughtful touch.</span></h2></div>
+        <p>No everything-app. No unnecessary extras.<br>Just the right tool for your kind of day.</p>
+      </div>
+      <div class="collection-toolbar">
+        <div class="filters" role="group" aria-label="Filter apps by platform" hidden>
+          <button type="button" data-filter="all" aria-pressed="true">All apps <span>03</span></button>
+          <button type="button" data-filter="android" aria-pressed="false">Android + Wear OS</button>
+          <button type="button" data-filter="windows" aria-pressed="false">Windows</button>
+        </div>
+        <p class="collection-note" id="filter-status" role="status">Three apps. Find your fit.</p>
+      </div>
+
+      <!-- Add a product article with its platform here; filtering picks it up automatically. -->
+      <div class="app-grid">
+        <article class="app-card rallium-card" data-platform="android" aria-labelledby="rallium-title">
+          <div class="card-topline"><span class="app-number">APP / 001</span><span class="availability"><i></i> Internal testing</span></div>
+          <div class="app-identity"><img src="assets/rallium-mark.svg" width="52" height="52" alt="" loading="lazy"><div><h3 id="rallium-title">Rallium</h3><span>YOUR COURTSIDE COMPANION</span></div></div>
+          <p class="app-tagline">Be in the rally.<br>Not in your head.</p>
+          <p class="app-description">One tap on your wrist. Every point remembered. Simple scoring for seven racket sports, with your match history and insights on your phone.</p>
+          <div class="rallium-art card-art" aria-label="Illustrative match scoreboard: you 40, Crea 30">
+            <div class="court-lines" aria-hidden="true"></div>
+            <div class="match-ticket">
+              <div class="ticket-heading"><span class="status-dot"></span> YOUR NEXT GREAT MATCH <span>↗</span></div>
+              <div class="ticket-score"><div><span>YOU</span><strong>40</strong></div><i>:</i><div><span>CREA</span><strong>30</strong></div></div>
+              <div class="ticket-footer"><span>TENNIS</span><span>ONE TAP. BACK TO THE RALLY.</span></div>
+            </div>
+            <span class="art-caption">ILLUSTRATIVE PREVIEW</span>
+          </div>
+          <div class="card-bottom"><span class="platform"><svg class="icon"><use href="#i-watch"/></svg> Android + Wear OS</span><a class="app-link" href="https://everydayappshq.github.io/rallium/" aria-label="Explore Rallium">Explore Rallium <svg class="icon"><use href="#i-diagonal"/></svg></a></div>
+        </article>
+
+        <article class="app-card tennis-card" data-platform="android" aria-labelledby="tennis-title">
+          <div class="card-topline"><span class="app-number">APP / 002</span><span class="availability"><i></i> Coming soon</span></div>
+          <div class="app-identity"><img src="assets/tennistrack-icon.png" width="52" height="52" alt="" loading="lazy"><div><h3 id="tennis-title">Tennis Track</h3><span>MEET YOUR SERVE</span></div></div>
+          <p class="app-tagline">Big serve energy.<br>Real insight.</p>
+          <p class="app-description">Your phone watches the court. Your watch keeps you in the loop. Explore video-estimated serve speed, in/out/net calls and where each serve lands.</p>
+          <div class="tennis-art card-art" aria-label="Illustrative serve speed of 148 kilometres per hour, landing in">
+            <div class="speed-label"><span class="status-dot"></span> A LITTLE BETTER, EVERY SESSION.</div>
+            <div class="speed-number">148<span>km/h</span></div>
+            <div class="speed-rule"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="speed-bottom"><span class="in-chip">IN ↗</span><span>THAT ONE FELT GOOD.</span></div>
+            <span class="art-caption">SAMPLE DATA / VIDEO ESTIMATES, NOT RADAR</span>
+          </div>
+          <div class="card-bottom"><span class="platform"><svg class="icon"><use href="#i-watch"/></svg> Android + Wear OS</span><a class="app-link" href="https://everydayappshq.github.io/tennistrack/" aria-label="Explore Tennis Track">Explore Tennis Track <svg class="icon"><use href="#i-diagonal"/></svg></a></div>
+        </article>
+
+        <article class="app-card oghma-card" data-platform="windows" aria-labelledby="oghma-title">
+          <div class="oghma-copy">
+            <div class="card-topline"><span class="app-number">APP / 003</span><span class="availability"><i></i> In development</span></div>
+            <div class="app-identity"><img src="assets/oghma-mark.svg" width="52" height="52" alt="" loading="lazy"><div><h3 id="oghma-title">Oghma</h3><span>YOUR SCREENSHOT STUDIO</span></div></div>
+            <p class="app-tagline">A screenshot.<br>A starting point.</p>
+            <p class="app-description">Capture a detail. Add a little clarity. Bring images, arrows and ideas together in one native Windows workspace. Your next explanation, beautifully made.</p>
+            <div class="card-bottom"><span class="platform"><svg class="icon"><use href="#i-windows"/></svg> Windows 10 + 11</span><a class="app-link" href="https://everydayappshq.github.io/oghma/" aria-label="Explore Oghma">Explore Oghma <svg class="icon"><use href="#i-diagonal"/></svg></a></div>
+          </div>
+          <div class="oghma-art">
+            <div class="annotation-note">Make your point.<svg viewBox="0 0 100 60" aria-hidden="true"><path d="M5 5Q15 50 85 42m-14-12 16 12-18 10" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+            <div class="screenshot-frame"><img src="assets/oghma-workspace-annotate-dark.png" width="1920" height="1020" alt="Oghma's dark Windows workspace, showing a captured website with a red rectangle, arrow and green text annotations." loading="lazy"></div>
+            <span class="art-caption">ACTUAL WINDOWS APP / DEVELOPMENT PREVIEW</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="approach section-space" id="approach" aria-labelledby="approach-title">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow">02 / A COMMON THREAD</p><h2 id="approach-title">Small by design.<br><span class="serif">Useful by nature.</span></h2></div><p>Different interests. Different devices.<br>One simple idea: make the everyday a little better.</p></div>
+        <div class="principles">
+          <article><span class="principle-icon"><svg class="icon"><use href="#i-focus"/></svg></span><span class="principle-number">01</span><h3>One thing, done well.</h3><p>A good app doesn’t need to do everything. It needs to make the thing you came for feel effortless.</p></article>
+          <article><span class="principle-icon"><svg class="icon"><use href="#i-heart"/></svg></span><span class="principle-number">02</span><h3>Made for real life.</h3><p>On court, at your desk, in the moment. Thoughtful details that fit around what you’re already doing.</p></article>
+          <article><span class="principle-icon"><svg class="icon"><use href="#i-grid"/></svg></span><span class="principle-number">03</span><h3>Room for what’s next.</h3><p>A collection, not a closed box. New ideas belong here, and the next useful little app is always a possibility.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="next-section container section-space" id="whats-next" aria-labelledby="next-title">
+      <div class="next-card">
+        <div><p class="eyebrow">03 / STILL EXPLORING</p><h2 id="next-title">Every day starts<br>with <span class="serif">a possibility.</span></h2><p>Three apps are just the beginning. This is the home for<br class="desktop-break"> what we’re building now — and whatever comes next.</p><a class="button button-dark" href="https://github.com/everydayappshq">See what’s in the making <svg class="icon"><use href="#i-diagonal"/></svg></a></div>
+        <div class="next-art" aria-hidden="true"><span class="future-tile tile-one"></span><span class="future-tile tile-two"></span><span class="future-tile tile-three"><svg><use href="#i-plus"/></svg></span><span class="next-art-label">A LITTLE SPACE FOR THE NEXT BIG IDEA.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    <div class="footer-top"><a class="brand" href="#top" aria-label="Everyday Apps HQ, back to top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>everyday<span class="brand-second">apps<span class="hq">HQ</span></span></span></a><p>Small apps. Bigger possibilities.</p><a class="back-top" href="#top">Back to top ↑</a></div>
+    <div class="footer-bottom"><span>© <span id="year">2026</span> Everyday Apps HQ</span><span>Independently made. Thoughtfully put together.</span><button class="motion-toggle" type="button" aria-pressed="false" hidden><span class="motion-indicator"></span><span class="motion-label">Motion off</span></button></div>
+  </footer>
+</body>
+</html>

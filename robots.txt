@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://everydayappshq.github.io/sitemap.xml
